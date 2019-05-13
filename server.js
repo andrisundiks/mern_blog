@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const adminPassword = require('./config/keys').adminPassword;
 
 const posts = require('./routes/api/posts');
 

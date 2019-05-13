@@ -1,8 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
-// Post Model
+const app = express();
+
+// Models
 const Post = require('../../models/Post');
+const User = require('../../models/User');
 
 // @route GET api/posts
 // @desc Get all Posts
@@ -14,15 +17,24 @@ router.get('/', (req, res) => {
 // @route POST api/posts
 // @desc Creates new Post
 router.post('/', (req, res) => {
-    const newPost = new Post({
-        title: req.body.title,
-        body: req.body.body,
-        tags: req.body.tags,
-        desc: req.body.desc
-    });
 
-    newPost.save().then(post => res.json(post))
-        .catch(err => res.json({err}))
+    User.findOne({ username: req.body.username })
+        .then(user => {
+            console.log(user.username)
+            if(req.body.password & req.body.password === user.password) {
+                const newPost = new Post({
+                    title: req.body.title,
+                    body: req.body.body,
+                    tags: req.body.tags,
+                    desc: req.body.desc,
+                });
+
+                newPost.save().then(post => res.json(post))
+                    .catch(err => res.json({err}))
+            }
+        }).catch(err => res.json(err));
+
+
 });
 
 module.exports = router;
