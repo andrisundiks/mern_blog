@@ -3,7 +3,16 @@ import React, { createContext, useReducer } from 'react';
 export const Store = createContext();
 
 const initialState = {
-
+    posts: [
+        {
+            "date": "2019-05-11T17:22:03.635Z",
+            "_id": "5cd704becf86673a68008a0d",
+            "title": "Testing number one",
+            "body": "Lore ipsum... errrr... aguvasg dfbhsdn bsdfb sd dsfobnsd fberhb",
+            "tags": "first cool supercool",
+            "desc": "This is the first entry, yeah",
+        }
+    ]
 };
 
 function reducer(state, action) {

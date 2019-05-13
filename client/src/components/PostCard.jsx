@@ -17,17 +17,16 @@ const PostCard = props => {
                         </figure>
                     </div>
                     <div className="media-content">
-                        <p className="title is-4">John Smith</p>
-                        <p className="subtitle is-6">@johnsmith</p>
+                        <p className="title is-4">{props.post.title}</p>
+                        <p className="subtitle is-6">Andris</p>
                     </div>
                 </div>
 
                 <div className="content">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Phasellus nec iaculis mauris. <a>@bulmaio</a>.
+                    { props.post.body }
                     <a href="#">#css</a> <a href="#">#responsive</a>
                     <br/>
-                        <time dateTime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                        <time dateTime={props.post.date}>11:09 PM - 1 Jan 2016</time>
                 </div>
             </div>
         </div>

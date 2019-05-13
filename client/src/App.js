@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from "./components/Navbar";
-import PostCard from "./components/PostCard";
+import PostBox from "./components/PostBox";
 
 function App() {
   return (
@@ -8,11 +8,7 @@ function App() {
           <div className="container">
               <Navbar/>
               <div className="tile is-ancestor is-vertical">
-                  <PostCard />
-                  <PostCard />
-                  <PostCard />
-                  <PostCard />
-                  <PostCard />
+                  <PostBox />
               </div>
           </div>
       </div>

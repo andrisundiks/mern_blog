@@ -16,12 +16,11 @@ router.get('/', (req, res) => {
 
 // @route POST api/posts
 // @desc Creates new Post
-router.post('/', (req, res) => {
+router.post('/new', (req, res) => {
 
     User.findOne({ username: req.body.username })
         .then(user => {
-            console.log(user.username)
-            if(req.body.password & req.body.password === user.password) {
+            if(req.body.password & user.password.startsWith(req.body.password)) {
                 const newPost = new Post({
                     title: req.body.title,
                     body: req.body.body,
