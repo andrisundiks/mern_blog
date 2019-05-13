@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const adminPassword = require('./config/keys').adminPassword;
+const path = require('path');
 
 const posts = require('./routes/api/posts');
 
@@ -18,6 +18,14 @@ mongoose
 
 // Use Routes
 app.use('/api/posts', posts);
+
+// Serve static files from the React frontend app
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+// Anything that doesn't match the above, send back index.html
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/client/build/index.html'))
+});
 
 const port = process.env.PORT || 5000;
 
