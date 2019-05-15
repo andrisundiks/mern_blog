@@ -30,7 +30,7 @@ function reducer(state, action) {
         case 'CHANGE_TAGS':
             return { ...state, formTags: action.payload };
         case 'ADD_POST':
-            fetch('/api/posts/new/', {
+            fetch('/api/posts/', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"
