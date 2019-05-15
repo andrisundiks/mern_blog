@@ -20,17 +20,15 @@ router.post('/', (req, res) => {
 
     User.findOne({ username: req.body.username })
         .then(user => {
-            if(req.body.password & user.password.startsWith(req.body.password)) {
                 const newPost = new Post({
                     title: req.body.title,
                     body: req.body.body,
                     tags: req.body.tags,
                     desc: req.body.desc,
                 });
-
                 newPost.save().then(post => res.json(post))
                     .catch(err => res.json({err}))
-            }
+
         }).catch(err => res.json(err));
 
 
