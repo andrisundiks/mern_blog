@@ -12,11 +12,26 @@ const initialState = {
             "tags": "first cool supercool",
             "desc": "This is the first entry, yeah",
         }
-    ]
+    ],
+    formTitle: "",
+    formDesc: "",
+    formBody: "",
+    formTags: "",
 };
 
 function reducer(state, action) {
-
+    switch(action.type) {
+        case 'CHANGE_TITLE':
+            return { ...state, formTitle: action.payload };
+        case 'CHANGE_DESC':
+            return { ...state, formDesc: action.payload };
+        case 'CHANGE_BODY':
+            return { ...state, formBody: action.payload };
+        case 'CHANGE_TAGS':
+            return { ...state, formTags: action.payload };
+        default:
+            return state;
+    }
 }
 
 export function StoreProvider(props) {
