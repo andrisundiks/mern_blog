@@ -29,6 +29,23 @@ function reducer(state, action) {
             return { ...state, formBody: action.payload };
         case 'CHANGE_TAGS':
             return { ...state, formTags: action.payload };
+        case 'ADD_POST':
+            fetch('/api/posts/new/', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    "title": state.formTitle,
+                    "desc": state.formDesc,
+                    "body": state.formBody,
+                    "tags": state.formTags
+                })
+            })
+                .then(newPost => {
+                    return { ...state, posts: [ ...state.posts, newPost ] }
+                })
+                .catch(err => console.log(err));
         default:
             return state;
     }

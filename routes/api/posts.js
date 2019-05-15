@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 
 // @route POST api/posts
 // @desc Creates new Post
-router.post('/new', (req, res) => {
+router.post('/', (req, res) => {
 
     User.findOne({ username: req.body.username })
         .then(user => {

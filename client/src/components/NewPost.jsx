@@ -9,6 +9,8 @@ const NewPost = props => {
     const handleBodyChange = e => dispatch({ type: 'CHANGE_BODY', payload: e.target.value });
     const handleTagsChange = e => dispatch({ type: 'CHANGE_TAGS', payload: e.target.value });
 
+    const handleSubmit = e => dispatch({ type: 'ADD_POST' });
+
     return (
         <section className="hero is-fullheight">
             <div className="hero-body">
@@ -20,7 +22,7 @@ const NewPost = props => {
                             <figure className="avatar">
                                 <img src="https://placehold.it/128x128"/>
                             </figure>
-                            <form>
+                            <form onSubmit={handleSubmit}>
                                 <div className="field">
                                     <div className="control">
                                         <input className="input is-large"
