@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import {Store} from "../Store";
+import {postNewPost} from "../helpers/api";
 
 const NewPost = props => {
     const { state, dispatch } = useContext(Store);
@@ -9,7 +10,22 @@ const NewPost = props => {
     const handleBodyChange = e => dispatch({ type: 'CHANGE_BODY', payload: e.target.value });
     const handleTagsChange = e => dispatch({ type: 'CHANGE_TAGS', payload: e.target.value });
 
-    const handleSubmit = e => dispatch({ type: 'ADD_POST' });
+    const handleSubmit = e => {
+        e.preventDefault();
+        console.log(e.target.title.value);
+        const post = {
+            title: e.target.title.value,
+            desc: e.target.desc.value,
+            body: e.target.body.value,
+            tags: e.target.body.value,
+        };
+        const newPost = postNewPost(post);
+        if(newPost) {
+            dispatch({ type: 'ADD_POST', payload: newPost });
+
+        }
+        else { console.log("ERROR: Unable to create new post")}
+    };
 
     return (
         <section className="hero is-fullheight">
@@ -51,7 +67,6 @@ const NewPost = props => {
                                 <div className="field">
                                     <div className="control">
                                         <textarea
-                                            class="textarea"
                                             placeholder="The body here..."
                                             name="body"
                                             value={state.formBody}

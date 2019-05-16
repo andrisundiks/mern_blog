@@ -7,7 +7,7 @@ const posts = require('./routes/api/posts');
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+//app.use(cors());
 
 // DB Config
 const db = require('./config/keys').mongoURI;

@@ -14,9 +14,7 @@ const Navbar = props => {
 
             <div id="navbarBasicExample" className="navbar-menu">
                 <div className="navbar-start">
-                    <a className="navbar-item">
-                        <Link to='/'>Home</Link>
-                    </a>
+                    <Link to='/' className="navbar-item">Home</Link>
                     <a className="navbar-item">
                         About
                     </a>
@@ -28,10 +26,8 @@ const Navbar = props => {
                             <a className="button is-primary">
                                 <strong>Github</strong>
                             </a>
-                            <Link to='/new'>
-                                <a className="button is-light">
-                                    New
-                                </a>
+                            <Link to='/new' className="button is-light">
+                                New
                             </Link>
                         </div>
                     </div>
