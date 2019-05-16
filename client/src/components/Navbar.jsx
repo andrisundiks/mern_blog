@@ -9,7 +9,7 @@ const Navbar = props => {
         <Router>
         <nav className="navbar" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
-                    <img src="https://i.etsystatic.com/6397696/r/il/1121b3/915740788/il_fullxfull.915740788_pmay.jpg" width="112" height="28" />
+                    <img src="https://i.ibb.co/Z1QStvn/robin-hat2.png" width="112" height="28" alt="Robin hat" />
             </div>
 
             <div id="navbarBasicExample" className="navbar-menu">

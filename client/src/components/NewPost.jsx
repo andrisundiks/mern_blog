@@ -12,7 +12,6 @@ const NewPost = props => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        console.log(e.target.title.value);
         const post = {
             title: e.target.title.value,
             desc: e.target.desc.value,
@@ -20,10 +19,7 @@ const NewPost = props => {
             tags: e.target.body.value,
         };
         const newPost = postNewPost(post);
-        if(newPost) {
-            dispatch({ type: 'ADD_POST', payload: newPost });
-
-        }
+        if(newPost) { dispatch({ type: 'ADD_POST', payload: newPost }); }
         else { console.log("ERROR: Unable to create new post")}
     };
 
