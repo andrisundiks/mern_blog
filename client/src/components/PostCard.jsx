@@ -10,6 +10,13 @@ const PostCard = props => {
         })
     };
 
+    const parseDate = () => {
+        const string = props.post.date.split('T')
+        const date = string[0];
+        const time = string[1].slice(0, 5);
+        return `${date} ${time}`;
+    };
+
     return (
         <div className="card tile" key={props.key}>
             <div className="card-content">
@@ -30,7 +37,7 @@ const PostCard = props => {
                     <br/>
                     { generateTags() }
                     <br/>
-                        <time dateTime={props.post.date}>11:09 PM - 1 Jan 2016</time>
+                        <time dateTime={props.post.date}>{ parseDate() }</time>
                 </div>
             </div>
         </div>

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import {Store} from "../Store";
 import {postNewPost} from "../helpers/api";
 
-const NewPost = props => {
+const NewPost = () => {
     const { state, dispatch } = useContext(Store);
 
     const handleTitleChange = e => dispatch({ type: 'CHANGE_TITLE', payload: e.target.value });

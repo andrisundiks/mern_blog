@@ -33,7 +33,7 @@ const PostBox = () => {
         posts = postsCards();
     }, []);
 
-    // Every time the posts the in state change, we rerender them.
+    // Every time the 'posts' the in state change, we re-render them.
     useEffect(() => {
         posts = postsCards();
     }, [state.posts]);

@@ -8,6 +8,9 @@ const initialState = {
     formDesc: "",
     formBody: "",
     formTags: "",
+    loginUser: "",
+    loginPass: "",
+    logged_in: false
 };
 
 function reducer(state, action) {
@@ -22,6 +25,10 @@ function reducer(state, action) {
             return { ...state, formBody: action.payload };
         case 'CHANGE_TAGS':
             return { ...state, formTags: action.payload };
+        case 'CHANGE_USERNAME':
+            return { ...state, loginUser: action.payload };
+        case 'CHANGE_PASSWORD':
+            return { ...state, loginPass: action.payload };
         case 'ADD_POST':
             return { ...state, posts: [ ...state.posts, action.payload ]};
         default:

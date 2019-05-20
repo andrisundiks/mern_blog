@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import NewPost from "./NewPost";
 import PostBox from "./PostBox";
+import Login from "./Login";
 
 const Navbar = props => {
 
@@ -26,8 +27,8 @@ const Navbar = props => {
                             <a className="button is-primary">
                                 <strong>Github</strong>
                             </a>
-                            <Link to='/new' className="button is-light">
-                                New
+                            <Link to='/login' className="button is-light">
+                                Log in
                             </Link>
                         </div>
                     </div>
@@ -35,6 +36,7 @@ const Navbar = props => {
             </div>
         </nav>
             <Route path="/" exact component={PostBox}/>
+            <Route path="/login" component={Login}/>
             <Route path="/new" component={NewPost} />
         </Router>
     )
