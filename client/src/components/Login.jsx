@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import {Store} from "../Store";
 import {loginUser} from "../helpers/api";
+import axios from 'axios';
 
 const Login = () => {
     const { state, dispatch } = useContext(Store);
@@ -8,12 +9,18 @@ const Login = () => {
     const handleUserChange = e => dispatch({ type: 'CHANGE_USERNAME', payload: e.target.value });
     const handlePassChange = e => dispatch({ type: 'CHANGE_PASSWORD', payload: e.target.value });
 
-    const handleSubmit = () => {
+    const handleSubmit = e => {
+        e.preventDefault();
         const credentials = {
             username: state.loginUser,
-            password: state.loginPass,
+            password: state.loginPass
         };
-        dispatch({ action: 'LOG_IN', payload: loginUser(credentials)});
+        axios.post('/api/users/login', {
+            username: credentials.username,
+            password: credentials.password
+        })
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
     };
 
     return (

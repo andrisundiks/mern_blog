@@ -33,7 +33,7 @@ const PostCard = props => {
                 </div>
 
                 <div className="content">
-                    { props.post.body }
+                    { props.post.desc }
                     <br/>
                     { generateTags() }
                     <br/>

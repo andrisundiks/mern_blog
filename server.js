@@ -1,63 +1,31 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
+const session = require('express-session');
 const passport = require('passport');
-const Strategy = require('passport-local').Strategy;
 
 const posts = require('./routes/api/posts');
-const User = require('./models/User');
-
-const secret = "test";
+const users = require('./routes/api/users');
 
 const app = express();
+
+// Passport config
+require('./config/passport')(passport);
+
 app.use(express.json());
 
 app.use(require('morgan')('combined'));
 app.use(require('cookie-parser')());
 app.use(require('body-parser').urlencoded({ extended: true }));
 
-app.use(
-    require('express-session')(
-        {
-            name: 'site_cookie',
-            secret: secret,
-            resave: false,
-            saveUninitialized: false,
-            cookie: {
-                // make session cookies only last 15 seconds
-                // for the sake of this demo
-                maxAge: 150000
-            }
-        }
-    )
-);
+// Express Session
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true,
+}));
 
-// using the local strategy with passport
-passport.use(
-    // calling the constructor given by passport-local
-    new Strategy(
-        // options for passport local
-        {
-        },
-        // login method
-        function (username, password, cb) {
-            if (username === user.username && password.toString() === user.password) {
-                return cb(null, user);
-            }
-            // null and false for all other cases
-            return cb(null, false);
-        }
-    )
-);
-
-passport.serializeUser(function (user, cb) {
-    cb(null, user.id);
-});
-
-passport.deserializeUser(function (id, cb) {
-    cb(null, user);
-});
-
+// Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -72,7 +40,7 @@ mongoose
 
 // Use Routes
 app.use('/api/posts', posts);
-app.use('/api/login', login);
+app.use('/api/users', users);
 
 // Serve static files from the React frontend app
 app.use(express.static(path.join(__dirname, 'client/build')));

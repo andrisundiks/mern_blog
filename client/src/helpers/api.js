@@ -26,14 +26,21 @@ export const postNewPost = async (newPost) => {
 };
 
 export const loginUser = async (credentials) => {
-    fetch('api/login', {
+    fetch('api/users/login', {
         method: 'post',
         mode: 'cors',
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(credentials)
+        body: JSON.stringify({
+            username: credentials.username,
+            password: credentials.password
+        })
     })
-        .then(res => { return res })
+        .then(res => {
+            if(res.success === "yo") {
+                console.log(res)
+            }
+        })
         .catch(err => console.log(err))
 };
